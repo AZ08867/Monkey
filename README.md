@@ -4,7 +4,7 @@
 
 ## 结构
 
-```
+```sh
 token/    Token 类型定义、关键字映射
 lexer/    词法分析器
 ast/      AST 节点
@@ -29,18 +29,18 @@ go test ./...    # 跑全部测试
 
 ## 笔记
 
-**Lexer**
+### Lexer
 
 - `peekChar()` 用来处理双字符 token（`==`、`!=`），先 peek 再 `readChar`
 - `LookupIdent` 区分关键字和普通 identifier
 
-**Pratt Parser**
+### Pratt Parser
 
 - 每种 token 注册 `prefixParseFn` 或 `infixParseFn`
 - `precedences` 表控制运算优先级，`peekPrecedence()` 驱动循环
 - 报错 `no prefix parse function for X` → 基本是漏注册了
 
-**AST**
+### AST
 
 - 节点都实现 `Node` 接口：`TokenLiteral()` + `String()`
 - `String()` 主要用来 debug，测试里直接打印 AST 对比结构
